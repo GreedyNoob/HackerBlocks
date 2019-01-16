@@ -12,11 +12,13 @@ public class Main {
 
         //int num=sc.nextInt();
         String str=sc.nextLine();
-
-        StringBuilder sb=new StringBuilder("");
-
-        System.out.println(rem_dup(str,sb));
+        System.out.println(countsubsec(str,""));
+        printsubsec(str,"");
 //
+//        StringBuilder sb=new StringBuilder("");
+//
+//        System.out.println(rem_dup(str,sb));
+////
 //
 //        for(int i=0;i<str.length();i++){
 //
@@ -50,6 +52,41 @@ public class Main {
 
         //System.out.println(febo(num));
         //odd_even(num);
+    }
+    public static int  countsubsec(String str,String ans){
+
+        if(str.length()==0){
+
+            return 1;
+        }
+        int count=0;
+        char ch=str.charAt(0);
+        str= str.substring(1);
+
+        count+=countsubsec(str,ans);
+        count+=countsubsec(str,ans+ch);
+        count+=countsubsec(str,ans+(int)ch);
+
+        return count;
+
+    }
+
+    public static void printsubsec(String str,String ans){
+
+        if(str.length()==0){
+            System.out.print(ans+" ");
+            return;
+        }
+
+        char ch=str.charAt(0);
+        str= str.substring(1);
+
+        printsubsec(str,ans);
+        printsubsec(str,ans+ch);
+        printsubsec(str,ans+(int)ch);
+
+        return;
+
     }
 
 
